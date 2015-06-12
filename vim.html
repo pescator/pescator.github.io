@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Pescator</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="script.js"></script>
+</head>
+<body>
+    <ul>
+        <li><a href="https://github.com/ivanov/vim-ipython#id2">Vim iPyhon plugin</a></li>
+    </ul>
+    <table id = t01>
+        <caption>Vim Quick Reference</caption>
+        <tr> <th>Command</th> <th>Description</th> </tr>
+        <tr> <td>Ctrl+R</td> <td>Redo</td> </tr>
+        <tr> <td>U</td> <td>Undo all changes on the line. hit u to undo U</td> </tr>
+        <tr> <td>x</td> <td>Delete a character</td> </tr>
+        <tr> <td>3x</td> <td>Delete three characters</td> </tr>
+        <tr> <td>ZZ</td> <td>Save and exit</td> </tr>
+        <tr> <td>e!</td> <td>Reload the original file</td> </tr>
+        <tr> <td>Ctrl + ]</td> <td>Go to tag target</td> </tr>
+        <tr> <td>:help i_CTRL-H</td> <td>Get help in Insert mode</td> </tr>
+        <tr> <td>:help 'number'</td> <td>Help for options, use quotes</td> </tr>
+        <tr> <td>:help i_<Up></td> <td>Help for special keys</td> </tr>
+        <tr> <td>:help E37</td> <td>Help to understand the error message better</td> </tr>
+        <tr> <td>e</td> <td>Move to the end of a word</td> </tr>
+        <tr> <td>ge</td> <td>Move backwards to the end of a word</td> </tr>
+        <tr> <td>'iskeyword'</td> <td>Option, see whats are the symbols for words boundaries </td> </tr>
+        <tr> <td>5$</td> <td>End of the 5th line</td> </tr>
+        <tr> <td>3fl</td> <td>Find the third l</td> </tr>
+        <tr> <td>t</td> <td>find a character and put a cursor in front of it</td> </tr>
+        <tr> <td>;</td> <td>repeat f or t command</td> </tr>
+        <tr> <td>,</td> <td>repeat f or t command backwards</td> </tr>
+        <tr> <td>%</td> <td>move to matching parenthesis (also see 'matchpairs' option)</td> </tr>
+        <tr> <td>H</td> <td>home</td></tr> 
+        <tr> <td>M</td> <td>middle</td></tr> 
+        <tr> <td>L</td> <td>last</td></tr>
+        <tr> <td>Ctrl+G </td><td>- check the current position in the file. Outputs more if 'ruler' is not set.</td></tr>
+        <tr> <td>:set number</td><td>- display a line number</td></tr>
+        <tr> <td>Ctrl+F</td><td>scroll the entire screen down except two lines</td></tr>
+        <tr> <td>Ctrl+B </td><td> scroll the entire screen up except two lines</td></tr>
+        <tr> <td>zz </td><td>  center the screen at the cursor</td></tr>
+        <tr> <td>zt </td><td>  put the cursor line at the top</td></tr>
+        <tr> <td>zb </td><td> put the cursor line at the bottom</td></tr>
+        <tr> <td>.*[]^%/\?~$ </td><td> special characters for search, precede by \</td></tr>
+        <tr> <td>:set ignorecase</td><td>Ignore case</td></tr>
+        <tr> <td>*</td> <td>search for a word under cursor</td></tr>
+        <tr> <td>#</td> <td>backwards</td></tr>
+        <tr> <td>g*</td> <td>match partial words</td></tr>
+        <tr> <td>g#</td><td> </td></tr>
+        <tr> <td>/the\&gt;</td> <td></td></tr>
+        <tr> <td>/\&lt;the\&gt;</td> <td></td></tr>
+        <tr> <td>:set hlsearch</td> <td></td></tr>
+        <tr> <td>:set nohlsearch</td> <td></td></tr>
+        <tr> <td>:nohlsearch (or :nohl)</td> <td></td></tr>
+        <tr> <td>:set incsearch </td><td> see results while typing</td></tr>
+        <tr> <td>:set nowrapscan </td><td> do not wrap around the end (start) of the file during the search</td></tr>
+        <tr> <td>:set incsearch </td><td> see results while typing</td></tr>
+        <tr> <td>:set nowrapscan </td><td> do not wrap around the end (start) of the file during the search</td></tr>
+        <tr> <td>'' </td><td> jump to the previous position (cycled)</td></tr>
+        <tr> <td>Ctrl+O </td><td> jump to older positions</td></tr>
+        <tr> <td>Ctrl+I </td><td> jump to newer positions</td></tr>
+        <tr> <td>:jumps </td><td> a list of jumps</td></tr>
+        <tr> <td>:marks</td> <td>Check the list of marks</td> </tr>
+        <tr> <td>d2w vs. d2e</td> <td> </td></tr>
+        <tr> <td>d$</td> <td></td> </tr>
+        <tr> <td>c2w </td> <td> note that c2w works like d2e, doesn't remove space after the last word</td> </tr>
+        <tr> <td>cc</td> <td> </td></tr>
+        <tr> <td>c$</td> <td> </td></tr>
+
+<!--
+    x  stands for  dl  (delete character under the cursor)
+        X  stands for  dh  (delete character left of the cursor)
+            D  stands for  d$  (delete to end of the line)
+                C  stands for  c$  (change to end of the line)
+                    s  stands for  cl  (change one character)
+                        S  stands for  cc  (change a whole line)
+
+                        4r<Enter> - replace 4 characters by a line break
+                        . - repeat the last command
+Visual mode
+o - extend/contract the left (other) side of the selection
+O - move to the other side of selection
+
+xp - exchange two characters
+Y works the same way as yy (compare to D)
+"*yy - copy text to clipboard
+"*p - paste from clipboard
+daw - delete a word, even if the cursor is in the middle of it
+dG  delete until the end of the file
+dgg delete until the start of the file
+cis - delete inner sentence
+cas - delete inner sentence plus the following space.
+R - replace mode
+~ - change a case of the character
+I   Start Insert mode after moving the cursor to the first non-blank in the line.
+
+A   Start Insert mode after moving the cursor to the end of the line.
+:map - list mappings
+:map \p i(<Esc>ea)<Esc>
+-->
+    </table>
+
+</body>
+
