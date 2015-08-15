@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Statistics</title>
+
+<script src="stat_files/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="stat_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="stat_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="stat_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="stat_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="stat_files/highlight/default.css"
+      type="text/css" />
+<script src="stat_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div id="header">
+<h1 class="title">Statistics</h1>
+</div>
+
+
+<div id="beta-distribution" class="section level1">
+<h1>Beta distribution</h1>
+<p><span class="math">\[
+f(x|\alpha, \beta) = 
+    \begin{cases}
+      \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}  x^{(\alpha - 1)} (1 - x)^{(\beta - 1)} &amp; \quad \text{for } 0 &lt; x &lt; 1 \text{,} \\
+      0 &amp; \quad \text{otherwise.}
+    \end{cases}
+\]</span></p>
+<pre class="r"><code>x = seq(0, 1, 0.01)
+
+for (alpha in c(1, 2, 3)) {
+  df = data.frame(x = x, 
+                  f_1_1 = dbeta(x, alpha, 1),
+                  f_1_2 = dbeta(x, alpha, 2),
+                  f_1_3 = dbeta(x, alpha, 3),
+                  f_1_4 = dbeta(x, alpha, 4)
+                  )
+  df2 = melt(df, id.vars = x)
+  print(
+  ggplot(aes(x = x,y = value, color = variable), data = df2) +
+    geom_line() +
+    ggtitle(&#39;p.d.f. of a Beta distribution&#39;) +
+    xlab(expression(x)) +
+    ylab(expression(f(x))) +
+    theme(axis.title.y = element_text(angle = 0, vjust = 1),
+          axis.title.x = element_text(angle = 0, hjust = 1)
+          ) +
+    scale_color_discrete(name = &#39;Parameters&#39;, 
+                         breaks = c(&#39;f_1_1&#39;, &#39;f_1_2&#39;, &#39;f_1_3&#39;, &#39;f_1_4&#39;),
+                         labels = c(bquote(list(alpha == .(alpha), beta == 1)), 
+                                    bquote(list(alpha == .(alpha), beta == 2)), 
+                                    bquote(list(alpha == .(alpha), beta == 3)), 
+                                    bquote(list(alpha == .(alpha), beta == 4))))
+  )
+}</code></pre>
+<p><img src="Figs/unnamed-chunk-2-1.png" title="" alt="" width="768" /><img src="Figs/unnamed-chunk-2-2.png" title="" alt="" width="768" /><img src="Figs/unnamed-chunk-2-3.png" title="" alt="" width="768" /></p>
+<ul>
+<li><a href="http://www.inside-r.org/r-doc/grDevices/plotmath" class="uri">http://www.inside-r.org/r-doc/grDevices/plotmath</a></li>
+<li><a href="http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/</a></li>
+</ul>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

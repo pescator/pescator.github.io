@@ -1,0 +1,64 @@
+---
+title: "Statistics"
+output: 
+  html_document: 
+    self_contained: no
+---
+[//]: This is a comment
+
+```{r global_options, include=FALSE}
+#suppress the warnings and other messages from showing in the knitted file.
+knitr::opts_chunk$set(fig.width=8, fig.height=6, fig.path='Figs/',
+                      echo=TRUE, warning=FALSE, message=FALSE)
+```
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(reshape2)
+```
+
+# Beta distribution
+$$
+f(x|\alpha, \beta) = 
+    \begin{cases}
+      \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}  x^{(\alpha - 1)} (1 - x)^{(\beta - 1)} & \quad \text{for } 0 < x < 1 \text{,} \\
+      0 & \quad \text{otherwise.}
+    \end{cases}
+$$
+
+```{r}
+x = seq(0, 1, 0.01)
+
+for (alpha in c(1, 2, 3)) {
+  df = data.frame(x = x, 
+                  f_1_1 = dbeta(x, alpha, 1),
+                  f_1_2 = dbeta(x, alpha, 2),
+                  f_1_3 = dbeta(x, alpha, 3),
+                  f_1_4 = dbeta(x, alpha, 4)
+                  )
+  df2 = melt(df, id.vars = x)
+  print(
+  ggplot(aes(x = x,y = value, color = variable), data = df2) +
+    geom_line() +
+    ggtitle('p.d.f. of a Beta distribution') +
+    xlab(expression(x)) +
+    ylab(expression(f(x))) +
+    theme(axis.title.y = element_text(angle = 0, vjust = 1),
+          axis.title.x = element_text(angle = 0, hjust = 1)
+          ) +
+    scale_color_discrete(name = 'Parameters', 
+                         breaks = c('f_1_1', 'f_1_2', 'f_1_3', 'f_1_4'),
+                         labels = c(bquote(list(alpha == .(alpha), beta == 1)), 
+                                    bquote(list(alpha == .(alpha), beta == 2)), 
+                                    bquote(list(alpha == .(alpha), beta == 3)), 
+                                    bquote(list(alpha == .(alpha), beta == 4))))
+  )
+}
+```
+
+```{r, echo=FALSE}
+#demo(plotmath)
+```
+
+- http://www.inside-r.org/r-doc/grDevices/plotmath
+- http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
