@@ -76,6 +76,7 @@ f(x|\alpha, \beta) =
     \end{cases}
 \]</span></p>
 <pre class="r"><code>x = seq(0, 1, 0.01)
+#alpha = 1
 
 for (alpha in c(1, 2, 3)) {
   df = data.frame(x = x, 
@@ -84,7 +85,7 @@ for (alpha in c(1, 2, 3)) {
                   f_1_3 = dbeta(x, alpha, 3),
                   f_1_4 = dbeta(x, alpha, 4)
                   )
-  df2 = melt(df, id.vars = x)
+  df2 = melt(df, id.vars = &#39;x&#39;)
   print(
   ggplot(aes(x = x,y = value, color = variable), data = df2) +
     geom_line() +
@@ -103,6 +104,28 @@ for (alpha in c(1, 2, 3)) {
   )
 }</code></pre>
 <p><img src="Figs/unnamed-chunk-2-1.png" title="" alt="" width="768" /><img src="Figs/unnamed-chunk-2-2.png" title="" alt="" width="768" /><img src="Figs/unnamed-chunk-2-3.png" title="" alt="" width="768" /></p>
+<pre class="r"><code>x = seq(0, 3, 0.01)
+
+  df = data.frame(x = x, 
+                  b_2_4 = dbeta(x, 2, 4),
+                  g_2_4 = dgamma(x, 2, 4)
+                  )
+  df2 = melt(df, id.vars = &#39;x&#39;)
+  print(
+  ggplot(aes(x = x, y = value, color = variable), data = df2) +
+    geom_line() +
+    ggtitle(&#39;p.d.f. of a Beta and Gamma distributions&#39;) +
+    xlab(expression(x)) +
+    ylab(expression(f(x))) +
+    theme(axis.title.y = element_text(angle = 0, vjust = 1),
+          axis.title.x = element_text(angle = 0, hjust = 1)
+          ) +
+    scale_color_discrete(name = &#39;Parameters&#39;, 
+                         breaks = c(&#39;b_2_4&#39;, &#39;g_2_4&#39;),
+                         labels = c(bquote(list(Beta, alpha == 2, beta == 4)), 
+                                    bquote(list(Gamma, alpha == 2, beta == 4))))
+  )</code></pre>
+<p><img src="Figs/unnamed-chunk-3-1.png" title="" alt="" width="768" /></p>
 <ul>
 <li><a href="http://www.inside-r.org/r-doc/grDevices/plotmath" class="uri">http://www.inside-r.org/r-doc/grDevices/plotmath</a></li>
 <li><a href="http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/</a></li>
