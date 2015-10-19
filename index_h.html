@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Pescator</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="script.js"></script>
+   <base target="_blank">
+   <script language="javascript" type="text/javascript">
+    function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        }
+   </script>
+</head>
+<body>
+<header>
+    <h1> Data Science House</h1>
+</header>
+<nav>
+    <ul id="menu">
+        <li><a href="doc.html" target="iframe_main">Documentation</a></li>
+        <li><a href="datasets.html" target="iframe_main">Public Datasets</a></li>
+        <li><a href="courses.html" target="iframe_main">Courses</a></li>
+        <li><a href="vim.html" target="iframe_main">Vim</a></li>
+        <li><a href="articles.html" target="iframe_main">Articles</a></li>
+        <li><a href="./stat/stat.html" target="iframe_main">Statistics</a></li>
+        <li><a href="visualization.html" target="iframe_main">Data Visualization</a></li>
+    </ul>
+</nav>
+<section>
+    <iframe id="main" src="doc.html" name="iframe_main" frameborder="0"
+         scrolling="no" id="iframe"
+         onload='javascript:resizeIframe(this);'></iframe> 
+</section>
+</body>
+</html>
