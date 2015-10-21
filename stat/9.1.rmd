@@ -16,7 +16,7 @@ library(ggplot2)
 #library(reshape2)
 ```
 
-# Exercise 9.11
+# Exercise 9.1.11
 
 ## a.
 
